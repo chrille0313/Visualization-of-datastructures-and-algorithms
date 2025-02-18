@@ -11,7 +11,6 @@ permissions:
 
 jobs:
   release:
-    name: Release
     runs-on: ubuntu-latest
     permissions:
       contents: write # To be able to publish a GitHub release
@@ -33,11 +32,15 @@ jobs:
       - name: Install dependencies
         run: npm clean-install
 
+      - name: Build
+        run: npm run build
+
       - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
         run: npm audit signatures
 
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
         run: npx semantic-release
