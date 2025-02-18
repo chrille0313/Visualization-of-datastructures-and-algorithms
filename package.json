@@ -1,10 +1,27 @@
 {
-  "name": "improved-repo-workflow",
-  "version": "0.0.0-development",
+  "name": "avlang",
   "description": "",
-  "author": "",
-  "type": "module",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "author": "chrille0313",
+  "keywords": [
+    "algorithms",
+    "datastructures",
+    "visualizer",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrille0313/Visualization-of-datastructures-and-algorithms.git"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
+    "build": "tsup",
     "prepare": "husky",
     "lint": "npm run lint:scripts && npm run lint:styles",
     "lint:scripts": "",
@@ -14,9 +31,15 @@
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
     "@commitlint/config-conventional": "^19.6.0",
+    "@semantic-release/github": "^11.0.1",
     "husky": "^9.1.7",
     "prettier": "^3.4.1",
     "semantic-release": "^24.2.0",
-    "@semantic-release/github": "^11.0.1"
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.6",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/node": "^22.13.1"
   }
 }
