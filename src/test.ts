@@ -3,9 +3,8 @@ import { StateVariableType } from "./types";
 
 
 //const log = new Logger();
-const arrlog = new ArrayLogger([1,2,3]);
 
-function minimum(arr: number[]): number {
+function minimum(arr: number[], arrlog: ArrayLogger): number {
   if (arr.length == 0) throw new Error('list is empty');
 
   let minIndex = arrlog.recordState(0, StateVariableType.POINTER, 'minIndex');
@@ -13,7 +12,7 @@ function minimum(arr: number[]): number {
 
     arrlog.mark(() => {
       if (arr[i.value] < arr[minIndex.value]) {
-        minIndex.value = i.value;
+        minIndex.value = i.value;        
       }
     }, i, minIndex);
 
@@ -22,29 +21,14 @@ function minimum(arr: number[]): number {
   return minIndex.value;
 }
 
-const a = {
-  object: new ArrayLogger([]),
-  matrix: [[{},2,3], [1,2,3], [1,2,3]],
-  array: [1,2,3],
-  string: 'string',
-  number: 123,
-  bool: false,
-  nul: null,
-  date: new Date(),  // stringified
-  undef: undefined,  // lost
-  inf: Infinity,  // forced to 'null'
-  re: /.*/,  // lost
-}
 
-//console.log(a);
-//const b = JSON.parse(JSON.stringify(a));
-//console.log(b);
-//const log2: ArrayLogger = b.object;
-//console.log(log2);
-
-
-console.log(minimum([3,2,1]));
-arrlog.print();
+const arr: number[] = [1,2,3];
+const arrlog = new ArrayLogger(arr);
+console.log(minimum(arr, arrlog));  //arr.createIndex()
 arrlog.write('log2.json');
 
+const arr2: number[] = [3,2,1];
+const arrlog2 = new ArrayLogger(arr2);
+console.log(minimum(arr2, arrlog2));  //arr.createIndex()
+arrlog2.write('log3.json');
 

@@ -180,6 +180,8 @@ export default class ArrayLogger {
       substeps: []
     };
 
+    //alt: block() skapar en egen logg...
+
     this.currentDepth++;
     currentStepList.push(step);
     block();
