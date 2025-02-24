@@ -20,8 +20,8 @@ export class linkedList<T> {
             this.head = newNode;
             this.tail = newNode;
 
-        } else {
-            this.tail!.next = newNode;
+        } else if (this.tail) {
+            this.tail.next = newNode;
             this.tail = newNode;
         }
         this.size++;
@@ -30,7 +30,7 @@ export class linkedList<T> {
     //insert at beginning of list
     prepend(value: T): void {
         const newNode = new Node2(value);
-
+        //if there is no head, then there is no list
         if (!this.head) {
             this.head = newNode;
             this.tail = newNode;
@@ -46,7 +46,7 @@ export class linkedList<T> {
             return;
         }
         this.head = this.head.next;
-        this.size--;
+        if (this.size > 0) this.size--;
     }
 
     removeLast(): void {
@@ -60,23 +60,26 @@ export class linkedList<T> {
         }
 
         let current = this.head;
+        //loop until the node before the tail
         while (current.next && current.next !== this.tail) {
             current = current.next;
         }
         current.next = null;
         this.tail = current;
-        this.size--;
+        if (this.size > 0) this.size--;
     }
 
     getSize(): number {
         return this.size;
     }
 
-    getHead(): Node2<T> | null {
-        return this.head;
+    //returns the value of the head node and not the node itself
+    getHead(): T | undefined {
+        return this.head?.value;
     }
 
-    getTail(): Node2<T> | null {
-        return this.tail;
+    //returns the value of the tail node and not the node itself
+    getTail(): T | undefined {
+        return this.tail?.value;
     }
 }

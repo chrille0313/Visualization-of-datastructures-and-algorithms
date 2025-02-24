@@ -19,8 +19,7 @@ class linkedListStack<T> {
     }
 
     peek(): T | undefined {
-        if (this.size === 0) return undefined;
-        else return this.linkedList?.getTail()?.value;
+        return this.linkedList?.getTail();
     }
 
     getSize(): number {
